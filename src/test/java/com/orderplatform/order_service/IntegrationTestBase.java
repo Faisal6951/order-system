@@ -15,7 +15,8 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
 @AutoConfigureMockMvc
 @SpringBootTest(properties = {
         "ratelimit.requests-per-minute=100000",
-        "spring.kafka.listener.auto-startup=false"
+        "spring.kafka.listener.auto-startup=false",
+        "outbox.relay.enabled=false"
 })
 public abstract class IntegrationTestBase {
 

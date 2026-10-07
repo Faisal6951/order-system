@@ -1,0 +1,37 @@
+[
+  {
+    "productTitle": "Google Pixel 9",
+    "price": 799.99,
+    "productDescription": "Latest Google smartphone"
+  },
+  {
+    "productTitle": "OnePlus 12",
+    "price": 799.99,
+    "productDescription": "Flagship Android smartphone"
+  },
+  {
+    "productTitle": "Dell XPS 14",
+    "price": 1499.99,
+    "productDescription": "Compact Windows laptop"
+  },
+  {
+    "productTitle": "",
+    "price": 450.0,
+    "productDescription": "This should fail - blank title"
+  },
+  {
+    "productTitle": "Google Pixel 9",
+    "price": 699.99,
+    "productDescription": "This should fail - duplicate in file"
+  },
+  {
+    "productTitle": "Bad Price Item",
+    "price": -25.5,
+    "productDescription": "This should fail - negative price"
+  },
+  {
+    "productTitle": "Free Item",
+    "price": 0.0,
+    "productDescription": "This should fail - zero price"
+  }
+]

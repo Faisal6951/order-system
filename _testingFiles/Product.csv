@@ -1,0 +1,7 @@
+MacBook Pro 16,2499.99,Apple professional laptop
+Bose QuietComfort Ultra,429.99,Wireless noise cancelling headphones
+Microsoft Surface Pro,999.99,Versatile Windows tablet
+,150.00,This should fail - blank title
+MacBook Pro 16,1999.99,This should fail - duplicate in file
+Google Pixel 8 Pro,799.99,This should fail - duplicate in database
+Broken Widget,free,This should fail - invalid price format

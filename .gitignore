@@ -1,0 +1,39 @@
+# Maven build output
+target/
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+.sts4-cache/
+nbproject/
+
+# Secrets and local-only config (never commit these)
+.env
+.env.*
+!.env.example
+application-local.properties
+application-local.yml
+*.pem
+*.key
+
+# Logs, dumps, OS files
+*.log
+logs/
+*.dump
+*.dumpstream
+HELP.md
+.DS_Store
+Thumbs.db
+queries.txt
+.postman/
+
+# Postman: variable values (tokens, passwords) live here
+postman/environments/
+postman/globals/

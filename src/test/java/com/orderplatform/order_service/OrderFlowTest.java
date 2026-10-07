@@ -18,6 +18,8 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 // import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -36,6 +38,8 @@ import org.springframework.test.web.servlet.MockMvc;
 class OrderFlowTest extends ApiTestSupport {
 
     private String adminToken;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
     private String userToken;
 
     @BeforeEach
@@ -64,7 +68,14 @@ class OrderFlowTest extends ApiTestSupport {
         String key = UUID.randomUUID().toString();
 
         MockHttpServletResponse first = placeOrder(productId, 2, key);
+        System.out.println("IDEMP-DIAG after first: keys=" + stringRedisTemplate.keys("idempotency:*")
+                + " status=" + first.getStatus() + " body=" + first.getContentAsString());
+
         MockHttpServletResponse second = placeOrder(productId, 2, key);
+        System.out.println("IDEMP-DIAG after second: keys=" + stringRedisTemplate.keys("idempotency:*")
+                + " status=" + second.getStatus() + " body=" + second.getContentAsString());
+        // MockHttpServletResponse first = placeOrder(productId, 2, key);
+        // MockHttpServletResponse second = placeOrder(productId, 2, key);
 
         assertThat(first.getStatus()).isEqualTo(201);
         assertThat(second.getStatus()).isEqualTo(201);

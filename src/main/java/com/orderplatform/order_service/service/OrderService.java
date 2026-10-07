@@ -62,9 +62,9 @@ public class OrderService {
     @Transactional
     public Order createOrder(OrderRequest request, String idempotencyKey) {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        String redisKey = "idempotency:" + userEmail + ":" + idempotencyKey;
 
-        String existingOrderId = (String) redisTemplate.opsForValue()
-                .get("idempotency:" + userEmail + ":" + idempotencyKey);
+        String existingOrderId = (String) redisTemplate.opsForValue().get(redisKey);
         if (existingOrderId != null) {
             return orderRepository.findById(Long.parseLong(existingOrderId))
                     .orElseThrow(() -> new OrderNotFoundException(Long.parseLong(existingOrderId)));
@@ -121,7 +121,7 @@ public class OrderService {
         outboxEventRepository.save(outboxEvent);
 
         redisTemplate.opsForValue().set(
-                "idempotency:" + idempotencyKey,
+                redisKey,
                 String.valueOf(savedOrder.getId()),
                 24,
                 TimeUnit.HOURS);
